@@ -52,6 +52,12 @@ class NgrokProcessBuilder
     {
         $command = ['ngrok', 'http', '--log', 'stdout'];
 
+        $region = env('NGROK_REGION');
+
+        if ($region) {
+            $command[] = "-region={$region}";
+        }
+
         if ($host !== '') {
             $command[] = '--host-header';
             $command[] = $host;

@@ -115,6 +115,6 @@ class NgrokServiceProvider extends ServiceProvider
      */
     private function isNgrokHost(string $host) : bool
     {
-        return preg_match('/^[a-z0-9]+\.ngrok\.io$/i', $host);
+        return preg_match('/^[a-z0-9]+(?:\.[a-z]{2})?\.ngrok\.io$/i', $host);
     }
 }
