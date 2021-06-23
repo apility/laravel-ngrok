@@ -26,7 +26,7 @@ class NgrokProcessBuilder
      *
      * @param string $cwd
      */
-    public function setWorkingDirectory(string $cwd) : void
+    public function setWorkingDirectory(string $cwd): void
     {
         $this->cwd = $cwd;
     }
@@ -36,7 +36,7 @@ class NgrokProcessBuilder
      *
      * @return string
      */
-    public function getWorkingDirectory() : string
+    public function getWorkingDirectory(): string
     {
         return $this->cwd;
     }
@@ -48,11 +48,11 @@ class NgrokProcessBuilder
      * @param string $port
      * @return \Symfony\Component\Process\Process
      */
-    public function buildProcess(string $host = '', string $port = '80') : Process
+    public function buildProcess(string $host = '', string $port = '80', string $region = 'eu'): Process
     {
         $command = ['ngrok', 'http', '--log', 'stdout'];
 
-        $region = env('NGROK_REGION');
+        $region = $region ? $region : env('NGROK_REGION', 'eu');
 
         if ($region) {
             $command[] = "-region={$region}";
